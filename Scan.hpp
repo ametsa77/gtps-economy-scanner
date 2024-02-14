@@ -1,4 +1,4 @@
-#include <vector>
+#include <unordered_map>
 #include <string>
 
 class Scan {
@@ -17,5 +17,5 @@ private:
 	int item_id = 0;
 	int item_count = 0;
 	int found = 0;
-	std::vector<std::pair<std::string, int>> data;
+	std::unordered_map<std::string, int> data;
 };
