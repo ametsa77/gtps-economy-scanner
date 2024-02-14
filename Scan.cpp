@@ -33,7 +33,7 @@ void Scan::player() {
 			int id = get[0], count = get[1];
 			if (id == item_id && count >= item_count) total++;
 		}
-		data.push_back(std::make_pair(db["name"], total));
+		data.insert({ db["name"], total });
 	}
 }
 
@@ -65,7 +65,7 @@ void Scan::world(int type) {
 				if (id == item_id && count >= item_count) total += count;
 			}
 		}
-		if (total != 0) data.push_back(std::make_pair(file.path().string(), total));
+		if (total != 0) data.insert({ file.path().string(), total });
 		}
 	}
 }
