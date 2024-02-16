@@ -31,9 +31,9 @@ void Scan::player() {
 		player >> db;
 		for (const auto& get : db["inventory"]) {
 			int id = get[0], count = get[1];
-			if (id == item_id && count >= item_count) total++;
+			if (id == item_id && count >= item_count) total += count;
 		}
-		data.insert({ db["name"], total });
+		if (total != 0) data.insert({ db["name"], total });
 	}
 }
 
@@ -50,6 +50,7 @@ void Scan::world(int type) {
 				int id = get[0], count = get[1];
 				if (id == item_id && count >= item_count) total += count;
 			}
+			break;
 		}
 		case VAULT:
 		{
@@ -57,6 +58,7 @@ void Scan::world(int type) {
 				int id = get["i"], count = get["c"];
 				if (id == item_id && count >= item_count) total += count;
 			}
+			break;
 		}
 		case DBOX:
 		{
@@ -64,6 +66,7 @@ void Scan::world(int type) {
 				int id = get["item"], count = get["count"];
 				if (id == item_id && count >= item_count) total += count;
 			}
+			break;
 		}
 		if (total != 0) data.insert({ file.path().string(), total });
 		}
